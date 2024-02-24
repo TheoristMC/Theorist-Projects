@@ -1,0 +1,30 @@
+
+{
+  "namespace": "common",
+  
+  "scroll_box/box": {
+    "modifications": [
+      {
+          "control_name": "touch_box",
+          "operation": "remove"
+      }
+    ]
+  },
+  
+  "scroll_box/box/mouse_box": {
+    "ignored": false
+  },
+    
+  "scrolling_panel": {
+    "modifications": [
+      {
+        "control_name": "scroll_touch",
+        "operation": "remove"
+      }
+    ]
+  },
+    
+  "scrolling_panel/scroll_mouse": {
+    "ignored": false
+  }
+}
