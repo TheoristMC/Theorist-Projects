@@ -1,0 +1,167 @@
+{
+  "namespace": "hud",
+  
+  "player_item": {
+    "type": "panel",
+    "size": [240, 22],
+    "layer": 2,
+    
+    "controls": [
+      {
+        "player": {
+          "type": "image",
+          "texture": "textures/ui/Black",
+          "size": ["100%", 20],
+          "alpha": 0.55,
+          
+          "controls": [
+            {
+              "info": {
+                "type": "stack_panel",
+                "orientation": "horizontal",
+                "size": ["100%c", "100%c"],
+                
+                "controls": [
+                  {
+                   "gamertag": {
+                     "type": "label",
+                     "size": ["default", 10],
+                     "layer": 3,
+                     "text": "#gamertag",
+                     "bindings": [
+                       {
+                         "binding_name": "#gamertag",
+                         "binding_type": "collection",
+                         "binding_collection_name": "players_collection"
+                        }
+                      ]
+                    }                    
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  
+  "player_list": {
+    "type": "grid",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "collection_name": "players_collection",
+    "grid_dimension_binding": "#players_grid_dimension",
+    "grid_item_template": "hud.player_item",
+    
+    "size": ["100%c", "100%c"],
+    "offset": [0, 0],
+    
+    "bindings": [
+      {
+        "binding_condition": "always",
+        "binding_name": "#players_grid_dimension"
+      }
+    ]
+  },
+  
+  "modal_title": {
+    "type": "image",
+    "texture": "textures/modal_dialog/modal_title",
+    "size": ["100%", 30],
+    
+    "controls": [
+      {
+        "title": {
+          "type": "label",
+          "text": "modal.title.text",
+          "font_type": "MinecraftTen",
+          "font_scale_factor": 1.4
+        }
+      }
+    ]
+  },
+  
+  "modal_content": {
+    "type": "image",
+    "texture": "textures/dialog/dialog_background",
+    "size": ["100%", 175],
+    
+    "controls": [
+      {
+        "scroller@common.scrolling_panel": {
+          "$scrolling_pane_size": ["90%", "90% - 6px"],
+          "$scrolling_pane_offset": [4, 0],
+          "$scrolling_content": "hud.player_list",
+          "$scroll_size": [5, "100% - 6px"],
+          "$show_background": false,
+          "offset": [15.5, 13],
+          "$always_handle_scrolling": true
+        }
+      }
+    ]
+  },
+  
+  "modal": {
+    "type": "stack_panel",
+    "size": [275, "100%c"],
+    
+    "controls": [
+      { "title@hud.modal_title": {} },
+      { "content@hud.modal_content": {} }
+    ]
+  },
+  
+  "root_panel": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_front",
+        "value": [
+          { 
+            "input": {
+              "type": "input_panel",
+              "prevent_touch_input": true,
+              "size": ["100%c", "100%c"],
+              
+              "controls": [
+                { "modal@hud.modal": {
+                  "bindings": [
+                    {
+                      "binding_type": "view",
+                      "source_control_name": "open_modal",
+                      "source_property_name": "#toggle_state",
+                      "target_property_name": "#visible"
+                    }
+                  ]
+                } }
+              ]
+            }
+          },
+          {
+            "button": {
+              "type": "input_panel",
+              "prevent_touch_input": true,
+              "size": ["100%c", "100%c"],
+              "anchor_from": "top_right",
+              "anchor_to": "top_right",
+              
+              "controls": [
+                {
+                 "toggle@common_toggles.light_text_toggle": {
+                   "$toggle_name": "modal",
+                   "$button_text": "Player List",
+                   "$toggle_view_binding_name": "open_modal",
+                   "anchor_from": "top_right",
+                   "anchor_to": "top_right",
+                   "size": [100, 20]
+                  }                  
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

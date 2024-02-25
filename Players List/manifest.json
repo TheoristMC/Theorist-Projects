@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "Credits to @thetheorist on Discord",
+        "name": "Players List",
+        "uuid": "0ea31919-cedf-4249-b591-f9e101e43ca9",
+        "version": [0, 0, 1],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "description": "Credits to @thetheorist on Discord",
+            "type": "resources",
+            "uuid": "743f6949-53be-44b6-b326-398005028819",
+            "version": [0, 0, 1]
+        }
+    ]
+}
