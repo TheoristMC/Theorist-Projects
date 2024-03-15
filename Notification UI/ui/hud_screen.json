@@ -1,0 +1,137 @@
+{
+    "namespace": "hud",
+    "anim_slide_right": {
+        "anim_type": "offset",
+        "easing": "in_quart",
+        "from": [
+            -100,
+            0
+        ],
+        "to": [
+            0,
+            0
+        ],
+        "duration": 1,
+        "next": "@hud.anim_wait"
+    },
+    "anim_wait": {
+        "anim_type": "wait",
+        "duration": 4,
+        "next": "@hud.anim_slide_left"
+    },
+    "anim_slide_left": {
+        "anim_type": "offset",
+        "easing": "in_quart",
+        "from": [
+            0,
+            0
+        ],
+        "to": [
+            -100,
+            0
+        ],
+        "duration": 0.5,
+        "destroy_at_end": "notification"
+    },
+    "notification_ui": {
+        "type": "panel",
+        "size": [
+            "100%",
+            "100%c"
+        ],
+        "controls": [
+            {
+                "notification": {
+                    "type": "image",
+                    "texture": "textures/ui/greyBorder",
+                    "size": [
+                        "100%c + 10px",
+                        30
+                    ],
+                    "max_size": [
+                        "100%",
+                        30
+                    ],
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "offset": "@hud.anim_slide_right",
+                    "controls": [
+                        {
+                            "text": {
+                                "type": "label",
+                                "layer": 31,
+                                "text": "#text",
+                                "text_alignment": "center",
+                                "offset": [
+                                    0,
+                                    2
+                                ],
+                                "size": [
+                                    "default",
+                                    "100% - 4px"
+                                ],
+                                "max_size": [
+                                    240,
+                                    30
+                                ],
+                                "bindings": [
+                                    {
+                                        "binding_name": "#chat_text",
+                                        "binding_name_override": "#text"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "chat_grid_item": {
+        "type": "stack_panel",
+        "layer": 1,
+        "size": [
+            "100%-2px",
+            "100%c"
+        ],
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "bindings": [
+            {
+                "binding_name": "(not #on_new_death_screen)",
+                "binding_name_override": "#visible"
+            }
+        ],
+        "controls": [
+            {
+                "chat_background": {
+                    "type": "image",
+                    "texture": "textures/ui/Black",
+                    "alpha": 0.7,
+                    "size": [
+                        "100%",
+                        "100%c"
+                    ],
+                    "anims": [
+                        "@hud.anim_chat_bg_wait"
+                    ],
+                    "controls": [
+                        {
+                            "chat_text@chat_label": {
+                                "anchor_from": "top_left",
+                                "anchor_to": "top_left",
+                                "offset": [
+                                    2,
+                                    0
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "notification@hud.notification_ui": {}
+            }
+        ]
+    }
+}

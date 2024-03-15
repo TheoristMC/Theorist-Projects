@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "Notification-UI",
+        "name": "@thetheorist on Discord!",
+        "uuid": "dee92da1-225b-4fe1-84db-7590c54b1e22",
+        "version": [0, 0, 1],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "description": "Resources",
+            "type": "resources",
+            "uuid": "743f6949-53be-44b6-b326-398005028819",
+            "version": [0, 0, 1]
+        }
+    ]
+}
